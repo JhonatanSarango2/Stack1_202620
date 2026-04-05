@@ -10,6 +10,8 @@ public class Ventana {
     private JButton btnCima;
     private JButton btnMostrar;
     private JTextArea txtListar;
+    private JButton btnLikes;
+    private JButton btnLimpiar;
     private Pila pila1 = new Pila();
 
     public Ventana() {
@@ -54,6 +56,28 @@ public class Ventana {
             @Override
             public void actionPerformed(ActionEvent e) {
                 txtListar.setText(pila1.showAll());
+            }
+        });
+        btnLikes.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    pila1.peek().aumentarLikes();
+                    txtListar.setText(pila1.showAll());
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null,ex.getMessage());
+                }
+            }
+        });
+        btnLimpiar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    pila1.peek().resetearLikes();
+                    txtListar.setText(pila1.showAll());
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null,ex.getMessage());
+                }
             }
         });
     }

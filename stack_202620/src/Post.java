@@ -4,10 +4,12 @@ import java.time.format.DateTimeFormatter;
 public class Post {
     private String url;
     private LocalDateTime fecha;
+    private int contLikes;
 
     public Post(String url) {
         this.url = url;
         fecha = LocalDateTime.now();
+        contLikes = 0;
     }
 
     public String getUrl() {
@@ -26,9 +28,18 @@ public class Post {
         this.fecha = fecha;
     }
 
+    public void aumentarLikes(){
+        contLikes++;
+    }
+
+    public void resetearLikes(){
+        contLikes = 0;
+    }
+
     @Override
     public String toString() {
         return "URL: " + url + "Fecha=" +
-                fecha.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")) + "\n";
+                fecha.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")) +
+                ", Likes: " + contLikes + "\n";
     }
 }
